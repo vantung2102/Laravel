@@ -57,7 +57,7 @@ Laravel/
   - Providers(Các nhà cung cấp): Thư mục chứa các file thực hiện việc khai báo service và bind vào trong Service Container
 
 - bootstrap: Thư mục chứa những file khởi động của framework và những file cấu hình auto loading, route, 
-  và file cache, thường thì chúng ta sẽ không làm gì đến nó.
+và file cache, thường thì chúng ta sẽ không làm gì đến nó.
 
   - cache(bộ nhớ đệm):
   - app.php : nạp thư viện core của laravel( providers có thể chạy)
