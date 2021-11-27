@@ -74,7 +74,7 @@ Laravel/
 - resources : chứa các tập tin giao diện (js, css, less, sass, coffeescript,...), views, ngôn ngữ. chỉnh sửa trực tiếp
 
 - routes(điều hướng) : bất kì request muốn qua controller phải qua đây, 
-  Thư mục chứa tất cả các điều khiển route (đường dẫn) trong project. Chứa các file route sẵn có: web.php, channels.php, api.php, và console.php
+Thư mục chứa tất cả các điều khiển route (đường dẫn) trong project. Chứa các file route sẵn có: web.php, channels.php, api.php, và console.php
 
       - api.php: Cấu hình các route liên quan đến API
       - web.php: Cấu hình các route liên quan đến web (Có giao diện người dùng)
