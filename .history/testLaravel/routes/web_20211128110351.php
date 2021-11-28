@@ -19,8 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/user', function () {
-    $user = new User();
-    $allUser = $user::all();
-    dd($allUser);
-    // return view('user');
+    return view('user');
 });

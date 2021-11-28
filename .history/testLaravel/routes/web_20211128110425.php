@@ -20,7 +20,6 @@ Route::get('/', function () {
 
 Route::get('/user', function () {
     $user = new User();
-    $allUser = $user::all();
-    dd($allUser);
+    dd($user);
     // return view('user');
 });
