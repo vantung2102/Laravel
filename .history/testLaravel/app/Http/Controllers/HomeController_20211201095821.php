@@ -16,7 +16,7 @@ class HomeController extends Controller
         return "home";
     }
 
-    public function getData($id = null)
+    public function getData($id)
     {
         return "getData " . $id;
     }

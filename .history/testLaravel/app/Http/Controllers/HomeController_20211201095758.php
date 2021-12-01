@@ -16,7 +16,7 @@ class HomeController extends Controller
         return "home";
     }
 
-    public function getData($id = null)
+    public function getData($id)
     {
         return "getData " . $id;
     }
@@ -28,11 +28,10 @@ class HomeController extends Controller
 
     public function upload($id)
     {
-        return "upload " . $id;
+        return "update " . $id;
     }
 
-    public function delete($id)
+    public function delete()
     {
-        return "delete " . $id;
     }
 }

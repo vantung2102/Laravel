@@ -16,23 +16,20 @@ class HomeController extends Controller
         return "home";
     }
 
-    public function getData($id = null)
+    public function getData($id)
     {
         return "getData " . $id;
     }
 
-    public function update($id)
+    public function update()
     {
-        return "update " . $id;
     }
 
-    public function upload($id)
+    public function upload()
     {
-        return "upload " . $id;
     }
 
-    public function delete($id)
+    public function delete()
     {
-        return "delete " . $id;
     }
 }

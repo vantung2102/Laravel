@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashBroadController;
 use App\Http\Controllers\admin\ProductsController;
 
 /*
@@ -44,7 +43,5 @@ Route::prefix("home")->middleware('checkHome')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-
-    Route::get('/', [DashBroadController::class, 'index']);
     Route::resource('products', ProductsController::class);
 });

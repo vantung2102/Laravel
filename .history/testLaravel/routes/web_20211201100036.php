@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashBroadController;
-use App\Http\Controllers\admin\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +25,7 @@ use App\Http\Controllers\admin\ProductsController;
 Route::prefix("home")->middleware('checkHome')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    Route::get('/get/{id?}', [HomeController::class, 'getData'])->name('home.getData');
+    Route::get('/get/{id}', [HomeController::class, 'getData'])->name('home.getData');
     Route::get('/update/{id}', [HomeController::class, 'update'])->name('home.update');
     Route::get('/upload/{id}', [HomeController::class, 'upload'])->name('home.upload');
     Route::delete('/delete/{id}', [HomeController::class, 'delete'])->name('home.delete');
@@ -41,10 +39,4 @@ Route::prefix("home")->middleware('checkHome')->group(function () {
     //         'name' => '[a-z-]+'
     //     ]
     // )->name("admin.user");
-});
-
-Route::prefix('admin')->group(function () {
-
-    Route::get('/', [DashBroadController::class, 'index']);
-    Route::resource('products', ProductsController::class);
 });

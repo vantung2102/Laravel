@@ -3,6 +3,6 @@
 <form action="/user" method="post">
     @csrf
     <input type="text">
-    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" method="put">
     <button type="submit">nút</button>
 </form>
