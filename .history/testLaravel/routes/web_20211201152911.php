@@ -49,4 +49,4 @@ Route::prefix('admin')->group(function () {
     Route::resource('products', ProductsController::class);
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index']);

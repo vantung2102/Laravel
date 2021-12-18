@@ -2,12 +2,11 @@
 
 - [Giới thiệu](#introduction)
 - [Thực thi câu lệnh SQL thuần](#running-queries)
-  - [Listen các query events](#listening-for-query-events)
+    - [Listen các query events](#listening-for-query-events)
 - [Database Transactions](#database-transactions)
 - [Sử dụng nhiều database connections](#accessing-connections)
 
 <a name="introduction"></a>
-
 ## Giới thiệu
 
 Laravel làm cho việc kết nối tới các database và thực thi các query cực kì đơn giản với nhiều database back-ends thông qua sử dụng raw SQL, [fluent query builder](/docs/{{version}}/queries), và [Eloquent ORM](/docs/{{version}}/eloquent). Hiện tại, Laravel hỗ trợ sẵn bốn database sau:
@@ -18,7 +17,6 @@ Laravel làm cho việc kết nối tới các database và thực thi các quer
 - SQL Server
 
 <a name="configuration"></a>
-
 ### Cấu hình
 
 Laravel xử lý việc kết nối và thực thi các query rất đơn giản. Cấu hình cho database nằm trong file `config/database.php`. Trong fil enayf, bạn có thể khai báo tất cả các database connections, cũng như chỉ định connection nào là mặc định.
@@ -47,7 +45,6 @@ Laravel hỗ trợ sẵn cho SQL Server; tuy nhiên bạn vẫn cần thêm vào
     ],
 
 <a name="read-write-connections"></a>
-
 #### Đọc / Ghi các connection
 
 Thi thoảng bạn muốn sử dụng một database connection cho câu lệnh SELECT, một connection khác cho việc INSERT, UPDATE và DELETE. Laravel làm cho điều này quá dễ dàng và các connections sẽ luôn được sử dụng nếu như bạn muốn thực thi raw query, query builder hay Eloquent ORM.
@@ -75,7 +72,6 @@ Chú ý là có hai khoá được thêm vào trong mảng cấu hình: `read` v
 Vì thế, chúng ta chỉ cần đặt các items vào trong mảng `read` và `write` nếu chúng ta muốn ghi đè các giá trị này ở mảng chính. Do đó, ở trường hợp này, `192.168.1.1` sẽ được sử dụng cho kết nối `read`, còn `192.168.1.2` được sử dụng cho kết nối `write`. Các thông số về database như credentials, prefix, character set và các thông số khác trong mảng chính `mysql` sẽ được dùng chung giữa các connection.
 
 <a name="running-queries"></a>
-
 ## Thực thi SQL thuần
 
 Khi mà bạn đã cấu hình cho database, bạn có thể chạy các query sử dụng `DB` facade. `DB` facade cung cấp các hàm để thực hiện các kiểu query: `select`, `update`, `insert`, `delete`, và `statement`.
@@ -145,7 +141,6 @@ Một vài câu lệnh database không trả về giá trị gì cả. Với nh�
     DB::statement('drop table users');
 
 <a name="listening-for-query-events"></a>
-
 ### Listen tới các query events
 
 Nếu bạn muốn nhận câu query SQL thực thi bởi ứng dụng, bạn có thể sử dụng hàm `listen`. Hàm này hữu ích khi thực hiện log các query hay debug. Bạn có thể đăng kí query listener trong một [service provider](/docs/{{version}}/providers):
@@ -185,7 +180,6 @@ Nếu bạn muốn nhận câu query SQL thực thi bởi ứng dụng, bạn c�
     }
 
 <a name="database-transactions"></a>
-
 ## Database Transactions
 
 Để thực thi một tập các xử lý trong một database transaction, bạn có thể sử dụng hàm `transaction`. Nếu một exception bị bắn ra từ trong transaction `Closure`, transaction sẽ tự động được rollback lại. Nếu `Closure` thực thi thành công, transaction sẽ tự động được commit. Bạn không cần phải lo lắng về việc thực hiện thủ công các thao tác roll back hay commit khi sử dụng hàm `transaction`:
@@ -213,7 +207,6 @@ Sử dụng hàm `commit` để commit một transaction:
 > **Chú ý:** Sử dụng các hàm transaction của `DB` facade cũng có thể quản lý được transaction cho [query builder](/docs/{{version}}/queries) và [Eloquent ORM](/docs/{{version}}/eloquent).
 
 <a name="accessing-connections"></a>
-
 ## Sử dụng nhiều database connection
 
 Khi sử dụng nhiều connection, bạn có thể truy cập vào mỗi connection thông qua hàm `connection` trên `DB` facade. Giá trị `name` truyền vào hàm `connection` cần tương ứng với tên của connections trong file cấu hình `config/database.php`:

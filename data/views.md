@@ -8,11 +8,11 @@
 
 ## Tạo Views
 
-> Tìm kiếm thông tìn về tạo bản mẫu Blade ? xem ở mục [Blade](blade.md)
+>Tìm kiếm thông tìn về tạo bản mẫu Blade ? xem ở mục [Blade](blade.md)
 
 Views chứa nội dung HTML phục vụ cho ứng dụng của bạn và tách ra riêng biệt từ bộ điều kiển controller / application. Các views được chứa tại thư mục `resources/views`.
 
-Ví dụ đơn giản của Views sẽ như thế này:
+Ví dụ đơn giản của  Views sẽ như thế này:
 
 ```HTML
 <!-- View chứa tại resources/views/greeting.php -->
@@ -56,7 +56,7 @@ Khi hàm `view` được gọi và không có tham số, thì nó chính là th�
 
 #### Creating The First Available View
 
-Sử dụng phương thức `first`, bạn có thể tạo ra view đầu tiện mà tồn tại trong các mảng view cho sẵn . Điều này hữu ích nếu ứng dụng hoặc gói của bạn cho phép tùy chỉnh hoặc ghi đè các chế độ xem:
+Sử dụng phương thức ``first``, bạn có thể tạo ra view đầu tiện mà tồn tại trong các mảng view cho sẵn . Điều này hữu ích nếu ứng dụng hoặc gói của bạn cho phép tùy chỉnh hoặc ghi đè các chế độ xem:
 
 ```PHP
 return view()->first(['custom.admin', 'admin'], $data);
@@ -78,7 +78,7 @@ Như ở ví dụ trước, bạn có thể truyền vào một mảng giá tr�
 return view('greetings', ['name' => 'Victoria']);
 ```
 
-Khi truyền dữ liệu bằng cách này, `$data` sẽ thành một mảng có khóa/giá trị tương ứng. Bên trong view, bạn có thể sử dụng các giá trị bằng cách gọi biến với tên là khóa của mảng, ví dụ như `<?php echo $key; ?>`.
+Khi truyền dữ liệu bằng cách này, `$data` sẽ thành một mảng có khóa/giá trị tương ứng. Bên trong view, bạn có thể sử dụng các giá trị bằng cách gọi biến với tên là khóa của mảng, ví dụ như `<?php echo $key; ?>`. 
 
 Một các khác có thể truyền dữ liệu vào view `view`, bạn sử dụng phương thức `with` để truyền dữ liệu đến view:
 
@@ -164,7 +164,7 @@ class ComposerServiceProvider extends ServiceProvider
 }
 ```
 
-> Hãy nhớ rằng, nếu bạn tạo ra một Service Provider chứa các đăng ký view composer, bạn cần thêm nó vào bên trong mảng `providers` chứa tại tập tin cấu hình `config/app.php`.
+>Hãy nhớ rằng, nếu bạn tạo ra một Service Provider chứa các đăng ký view composer, bạn cần thêm nó vào bên trong mảng `providers` chứa tại tập tin cấu hình `config/app.php`.
 
 Bây giờ chúng ta đã đăng ký thành công một view composer, Phương thức `ProfileComposer@compose` sẽ thực thi tại thời điểm mà view `profile` được rendered. Vì vậy, nào chúng ta hãy định nghĩa lớp đó:
 
@@ -212,7 +212,7 @@ class ProfileComposer
 
 Như vậy trước khi view đó được rendered, phương thức `compose` sẽ gọi `Illuminate\View\View` qua `$view`. Bạn có thể dụng phương thức `with` để ràng buộc dữ liệu đến view.
 
-> **Chú ý:** Tất các các view composers được xử lý thông qua [service container](container.md), vì vậy bạn có thể thêm các phụ thuộc vào bên trong phương thức khởi tạo contructor của view composer.
+> **Chú ý:**  Tất các các view composers được xử lý thông qua [service container](container.md), vì vậy bạn có thể thêm các phụ thuộc vào bên trong phương thức khởi tạo contructor của view composer.
 
 #### Đính kèm Composer vào nhiều Views
 

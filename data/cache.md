@@ -2,18 +2,17 @@
 
 - [Cấu hình](#configuration)
 - [Sử dụng cache](#cache-usage)
-  - [Lấy một đối tượng cache](#obtaining-a-cache-instance)
-  - [Lấy các items lưu trong cache](#retrieving-items-from-the-cache)
-  - [Lưu các items vào trong cache](#storing-items-in-the-cache)
-  - [Xoá các items ra khỏi cache](#removing-items-from-the-cache)
+    - [Lấy một đối tượng cache](#obtaining-a-cache-instance)
+    - [Lấy các items lưu trong cache](#retrieving-items-from-the-cache)
+    - [Lưu các items vào trong cache](#storing-items-in-the-cache)
+    - [Xoá các items ra khỏi cache](#removing-items-from-the-cache)
 - [Cache Tags](#cache-tags)
-  - [Lưu trữ các cache items được tag](#storing-tagged-cache-items)
-  - [Truy cập các cache items được tag](#accessing-tagged-cache-items)
+    - [Lưu trữ các cache items được tag](#storing-tagged-cache-items)
+    - [Truy cập các cache items được tag](#accessing-tagged-cache-items)
 - [Thêm một cache driver tự chọn](#adding-custom-cache-drivers)
 - [Events](#events)
 
 <a name="configuration"></a>
-
 ## Cấu hình
 
 Laravel cung cấp một API thống nhất cho các hệ thống cache khác nhau. Cấu hình cho cache được đặt trong file `config/cache.php`. Trong file này bạn có thể chỉ định cache driver nào bạn muốn sử dụng mặc định trong ứng dụng. Laravel hỗ trợ sẵn các hệ thông cache phía backends phổ biến như [Memcached](http://memcached.org) và [Redis](http://redis.io).
@@ -65,11 +64,9 @@ Trước khi sử dụng Redis cache với Laravel, bạn cần phải cài đ�
 Thông tin thêm chi tiết về cấu hình cho Redis, hãy tham khảo [mục cấu hình cho Redis](/docs/{{version}}/redis#configuration)
 
 <a name="cache-usage"></a>
-
 ## Sử dụng cache
 
 <a name="obtaining-a-cache-instance"></a>
-
 ### Lấy một đối tượng cache
 
 Hai [contracts](/docs/{{version}}/contracts) `Illuminate\Contracts\Cache\Factory` và `Illuminate\Contracts\Cache\Repository` cung cấp truy xuất tới Laravel cache services. Contract `Factory` cung cấp tuy cập tới tất cả các cache drivers được khai báo cho ứng dụng. Contract `Repository` về cơ bản là triển khai của cache driver mặc định cho ứng dụng mà bạn chỉ định trong file cấu hình `cache`.
@@ -108,7 +105,6 @@ Sử dụng `Cache` facade cho phép bạn có thể truy xuất tới nhiều c
     Cache::store('redis')->put('bar', 'baz', 10);
 
 <a name="retrieving-items-from-the-cache"></a>
-
 ### Lấy các items trong cache
 
 Hàm `get` trong `Cache` facade được sử dụng để lấy các items trong cache. Nếu như item không tồn tại trong cache, giá trị `null` sẽ được trả về. Nếu muốn, bạn có thể truyền vào tham số thứ hai để hàm `get` chỉ định giá trị mặc định nếu như item không tồn tại:
@@ -116,6 +112,7 @@ Hàm `get` trong `Cache` facade được sử dụng để lấy các items tron
     $value = Cache::get('key');
 
     $value = Cache::get('key', 'default');
+
 
 Bạn thậm chí có thể truyền vào một `Closure` như một giá trị mặc định. Kết quả của `Closure` sẽ được trả về nếu item cần lấy không tồn tại trong cache. Truyền vào một Closure cho phép bạn trì hoãn lại việc lấy giá trị mặc định từ trong một database hay từ một dịch vụ bên ngoài:
 
@@ -166,7 +163,6 @@ Nếu bạn muốn lấy ra một item trong cache và xoá đi, bạn có thể
     $value = Cache::pull('key');
 
 <a name="storing-items-in-the-cache"></a>
-
 ### Lưu trữ items vào trong cache
 
 Bạn có thể sử dụng hàm `put` của `Cache` facade để lưu items vào trong cache. Khi bạn thêm một item vào trong cache, bạn sẽ cần phải chỉ rõ số phút mà giá trị sẽ được lưu:
@@ -188,7 +184,6 @@ Hàm `forever` có thể được sử dụng để lưu một item trong cache 
     Cache::forever('key', 'value');
 
 <a name="removing-items-from-the-cache"></a>
-
 ### Xoá các items ra khỏi cache
 
 Bạn có thể xoá items khỏi cache sử dụng hàm `forget` trong `Cache` facade:
@@ -202,43 +197,39 @@ Bạn có thể xoá toàn bộ cache sử dụng hàm `flush`:
 Việc xoá toàn bộ cache **không hề** tuân theo tiền tố cache nào, mà sẽ thực hiện xoá toàn bộ tất cả trong cache. Vì thế hãy thực sự cẩn trọng khi xoá một giá trị cache mà được sử dụng chung giữa các ứng dụng.
 
 <a name="cache-tags"></a>
-
 ## Cache Tags
 
 > **Lưu ý:** Cache tag không hỗ trợ khi sử dụng cache driver là `file` và `database`. Thêm nữa, khi sử dụng nhiều tag với cache được lưu dưới dạng "forever", hiệu năng sẽ đạt tốt nhất ở driver có khả năng tự động xoá các danh sách đã lưu quá lâu như `memcached`.
 
 <a name="storing-tagged-cache-items"></a>
-
 ### Lưu các items đã được tag
 
 Cache tag cho phép bạn tag các item liên quan tới nhau trong cache và có thể xoá hết các giá trị cache mà có chung một tag. Bạn có thể truy xuất vào một cache được tag bằng cách truyền vào một mảng các tên tag:
 
-    Cache::tags(['people', 'artists'])->put('John', $john, $minutes);
+	Cache::tags(['people', 'artists'])->put('John', $john, $minutes);
 
-    Cache::tags(['people', 'authors'])->put('Anne', $anne, $minutes);
+	Cache::tags(['people', 'authors'])->put('Anne', $anne, $minutes);
 
 Tuy nhiên, bạn không hề bị hạn chế khi sử dụng hàm `put`. Bạn có thể sử dụng bất cứ hàm lưu trữ cache nào khi làm việc với tag.
 
 <a name="accessing-tagged-cache-items"></a>
-
 ### Truy xuất vào cache item được tag
 
 Để lấy một cache item được tag, truyền vào danh sách tương tự các tag trong hàm `tags`:
 
-    $john = Cache::tags(['people', 'artists'])->get('John');
+	$john = Cache::tags(['people', 'artists'])->get('John');
 
     $anne = Cache::tags(['people', 'authors'])->get('Anne');
 
 Bạn có thể xoá tất cả các item có chung một tag hoặc danh sách các tag. Ví dụ, mã lệnh sau sẽ xoá tất cả các cache được tag với giá trị là `people`, `authors`, hoặc cả hai. Vì thế, cả hai khoá là `Anne` và `John` sẽ bị xoá khỏi cache:
 
-    Cache::tags(['people', 'authors'])->flush();
+	Cache::tags(['people', 'authors'])->flush();
 
 Ngược lại, câu lệnh này sẽ chỉ xoá các cache có tag là `authors`, vì thế `Anne` sẽ bị xoá, còn `John` thì không.
 
-    Cache::tags('authors')->flush();
+	Cache::tags('authors')->flush();
 
 <a name="adding-custom-cache-drivers"></a>
-
 ## Thêm một cache driver tự chọn
 
 Để mở rộng Laravel với một cache driver tuỳ chọn, chúng ta sẽ sử dụng hàm `extend` trong `Cache` facade, để có thể thực hiện liên kết tới phần quản lý. Về cơ bản, việc này sẽ thông qua một [service provider](/docs/{{version}}/providers).
@@ -311,7 +302,6 @@ Khi mà việc mở rộng hoàn thiện, chỉ cần cập nhất tên giá tr�
 Nếu bạn băn khoăn việc đặt code cho cache driver riêng ở đâu, hãy nghĩ tới việc tạo thành thư viện trên Packagist! Hoặc là, bạn có thể tạo một namespace `Extensions` trong thư mục `app`. Tuy nhiên, nên nhớ là Laravel không có cứng nhắc trong cấu trúc ứng dụng và bạn hoàn toàn thoải mái trong việc quản lý ứng dụng theo cách bạn muốn.
 
 <a name="events"></a>
-
 ## Events
 
 Để thực thi code mỗi khi có một thao tác làm việc với cache xảy ra, bạn có thể lắng nghe các [events](/docs/{{version}}/events) từ cache. Về cơ bản, bạn nên đặt những phần này vào trong `EventServiceProvider`:

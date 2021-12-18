@@ -13,17 +13,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        //c1
-        $content = 'shyboy';
         $data = [
-            'content' => $content
+            'content' => 'shyboy'
         ];
-        //c2::
-        // view('home', compact($content));
-        //c3 ->
-        // view('home')->with(['
-        //  'content' => $content
-        // '])
         return view('home', $data);
     }
 

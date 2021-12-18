@@ -4,24 +4,22 @@
 - [Đắng kí Events / Listeners](#registering-events-and-listeners)
 - [Tạo Events](#defining-events)
 - [Tạo Listeners](#defining-listeners)
-  - [Queued Event Listeners](#queued-event-listeners)
+    - [Queued Event Listeners](#queued-event-listeners)
 - [Firing Events](#firing-events)
 - [Broadcasting Events](#broadcasting-events)
-  - [Cấu hình](#broadcast-configuration)
-  - [Đánh dấu Events cho Broadcast](#marking-events-for-broadcast)
-  - [Broadcast Data](#broadcast-data)
-  - [Tuỳ chỉnh Event Broadcasting](#event-broadcasting-customizations)
-  - [Sử dụng Event Broadcasts](#consuming-event-broadcasts)
+    - [Cấu hình](#broadcast-configuration)
+    - [Đánh dấu Events cho Broadcast](#marking-events-for-broadcast)
+    - [Broadcast Data](#broadcast-data)
+    - [Tuỳ chỉnh Event Broadcasting](#event-broadcasting-customizations)
+    - [Sử dụng Event Broadcasts](#consuming-event-broadcasts)
 - [Event Subscribers](#event-subscribers)
 
 <a name="introduction"></a>
-
 ## Giới thiệu
 
 Events của Laravel cung cấp một triển khai observer đơn giản, cho phép bạn subscribe và listen tới các events trong ứng dụng. Các event class về cơ bản được lưu trong thư mục `app/Events`, còn các listener lại được lưu trong `app/Listeners`.
 
 <a name="registering-events-and-listeners"></a>
-
 ## Đăng kí Events / Listeners
 
 `EventServiceProvider` đi kèm trong Laravel cung cấp một vị trí tiện ích cho việc đăng kí tất cả các event listener. Thuộc tính `listen` chứa một mảng tất cả các events (khoá) và listeners của chúng (values). Dĩ nhiên, bạn có thể thêm vào bao nhiêu events tuỳ ý trong mảng này nếu như ứng dụng yêu cầu. Ví dụ, hãy cùng thêm vào event `PodcastWasPurchased`:
@@ -71,7 +69,6 @@ Bạn có thể đăng kí các listener sử dụng dấu wildcard `*`, cho ph�
     });
 
 <a name="defining-events"></a>
-
 ## Tạo Events
 
 Một event class đơn giản chỉ là một data container chứa thông tin liên quan tới event. Ví dụ, giả dụ chúng ta có tạo ra event `PodcastWasPurchased` và nhận vào một [Eloquent ORM](/docs/{{version}}/eloquent):
@@ -105,7 +102,6 @@ Một event class đơn giản chỉ là một data container chứa thông tin 
 Như bạn thấy, event class này không có chứa logic nào. Nó đơn giản chỉ là một container cho đối tượng `Podcast` được mua. Trait `SerializeModels` sử dụng bởi event sẽ thực hiện serialize bất cứ Eloquent model nào nếu như đối tượng event được serialize sử dụng hàm `serialize` của PHP.
 
 <a name="defining-listeners"></a>
-
 ## Tạo Listeners
 
 Tiếp đến, hãy cùng nhau xem listener cho ví dụ về event ở trên. Event listener nhận một instance event trong hàm `handle`. Câu lệnh `event:generate` sẽ tự động import vào các event class cần thiết và type-hint event trong hàm `handle`. Bên trong hàm `handle`, bạn có thể thực hiện bất cứ logic xử lý cần thiết tương ứng cho event.
@@ -154,7 +150,6 @@ Event listener cũng có thể được type-hint các dependency cần thiết 
 Thi thoảng, bạn muốn dừng chuyển tiếp event tới các listener khác. Bạn có thể thực hiện bằng cách trả về `false` trong hàm `handle` của listener.
 
 <a name="queued-event-listeners"></a>
-
 ### Queued Event Listeners
 
 Bạn muốn [queue](/docs/{{version}}/queues) một event listener? Không còn gì đơn giản hơn. Đơn giản chỉ cần thêm vào `ShouldQueue` interface vào trong listener class. Listener được tạo bởi câu lệnh `event:generate` đã kèm sẵn interface import vào trong namespace, vì thế bạn chỉ cần sử dụng ngay và luôn:
@@ -198,7 +193,6 @@ Nếu bạn cần truy xuất vào queue qua hai hàm `delete` và `release`, b�
     }
 
 <a name="firing-events"></a>
-
 ## Firing Events
 
 Để bắn event, bạn có thể sử dụng `Event` [facade](/docs/{{version}}/facades), bằng cách truyền vào một instance của event vào trong hàm `fire`. Hàm `fire` sẽ dispatch event tới tất cả các listener đã được đăng kí:
@@ -236,7 +230,6 @@ Ngoài ra, bạn có thể sử dụng hàm helper `event` để bắn event:
     event(new PodcastWasPurchased($podcast));
 
 <a name="broadcasting-events"></a>
-
 ## Broadcasting Events
 
 Trong nhiều ứng dụng web hiện đại ngày nay, web socket được sử dụng để tạo cập nhật động và real-time trên UI. Khi có dữ liệu cập nhật trên server, một bản tin được gửi qua socket và được xử lý bởi client.
@@ -244,7 +237,6 @@ Trong nhiều ứng dụng web hiện đại ngày nay, web socket được sử
 Để hỗ trọ bạn tạo ứng dụng kiểu này, Laravel làm cho việc đó đơn giản để "broadcast" các event qua một kết nối websocket. Broadcast event cho phép bạn chia sẻ cùng tên event giữa code phía server và code Javascript phía client.
 
 <a name="broadcast-configuration"></a>
-
 ### Cấu hình
 
 Cấu hình để broadcast event được lưu trong `config/broadcasting.php`. Laravel hỗ trợ một số broadcast driver như [Pusher](https://pusher.com), [Redis](/docs/{{version}}/redis), và `log` driver cho môi trường phát triển và debug. Cấu hình ví dụ cho mỗi driver này đều kèm sẵn trong mỗi ứng dụng Laravel.
@@ -261,7 +253,6 @@ Các dependency sau cần thiết cho sử dụng event broadcasting:
 Trước khi broadcast event, bạn cũng cần cấu hình và chạy một [queue listener](/docs/{{version}}/queues). Tất cả các event broadcasting được thực hiện thông qua queued jobs vì thế thời gian response của ứng dụng không bị ảnh hưởng lớn lắm.
 
 <a name="marking-events-for-broadcast"></a>
-
 ### Đánh dấu event cho Broadcast
 
 Để cho Laravel biết nếu một event cần được broadcase, triển khai interface `Illuminate\Contracts\Broadcasting\ShouldBroadcast` trong event class. Interface này yêu cầu bạn triển khai một hàm là `broadcastOn`, hàm này trả về một mảng tên "các channel" mà event cần được broadcast tới:
@@ -305,7 +296,6 @@ Trước khi broadcast event, bạn cũng cần cấu hình và chạy một [qu
 Sau đó, bạn chỉ cần [bắn event](#firing-events) như thông thường. Khi mà event đã được bắn ra, một [queued job](/docs/{{version}}/queues) sẽ tự động broadcast event qua broadcast driver đã cấu hình.
 
 <a name="broadcast-data"></a>
-
 ### Broadcast Data
 
 Khi một event được broadcase, tất cả các thuộc tính `public` được tự động serialize và broadcast cùng event payload, điều này cho phép bạn lấy bất cứ dữ liệu public nào từ Javascript. Vì thế, ví dụ như, nếu event có một thuộc tính public là `$user` có chứa thông tin về Eloquent model tương ứng, thì payload của broadcast sẽ kiểu thế này:
@@ -331,7 +321,6 @@ Tuy nhiên, nếu bạn muốn có quyền kiểm soát tốt hơn với payload
     }
 
 <a name="event-broadcasting-customizations"></a>
-
 ### Tuỳ chỉnh event broadcasting
 
 #### Thay đổi tên event
@@ -363,7 +352,6 @@ Mặc định, mỗi event được broadcase được đặt vào trong queue m
     }
 
 <a name="consuming-event-broadcasts"></a>
-
 ### Nhận và sử dụng Event Broadcasts
 
 #### Pusher
@@ -413,7 +401,6 @@ Sử dụng thư viện `socket.io` và `ioredis`, bạn có thể nhanh chóng 
     });
 
 <a name="event-subscribers"></a>
-
 ## Event Subscribers
 
 Event subscriber là class mà bạn có thể dùng để đăng kí nhiều event bên trong class, và bạn có thể tạo ra các event handler khác nhau chỉ trong một class. Subscriber cần khai báo một hàm `subscribe`, mà sẽ được truyền vào trong event dispatcher:

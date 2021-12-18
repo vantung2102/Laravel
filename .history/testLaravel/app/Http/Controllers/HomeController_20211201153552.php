@@ -19,11 +19,7 @@ class HomeController extends Controller
             'content' => $content
         ];
         //c2::
-        // view('home', compact($content));
-        //c3 ->
-        // view('home')->with(['
-        //  'content' => $content
-        // '])
+        // view('home',)
         return view('home', $data);
     }
 

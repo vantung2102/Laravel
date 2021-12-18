@@ -90,7 +90,7 @@ class UserController extends Controller
 
 #### Truy cập vào Request qua Route Closures
 
-Bạn cũng có thể type-hint class `Illuminate\Http\Request` trong route Closure. Service sẽ tự động inject các request Closure khi nó sẽ được thực thi:
+Bạn cũng có thể type-hint class ``Illuminate\Http\Request`` trong route Closure. Service sẽ tự động inject các request Closure khi nó sẽ được thực thi:
 
 ```PHP
 use Illuminate\Http\Request;
@@ -102,17 +102,17 @@ Route::get('/', function (Request $request) {
 
 ### Đường dẫn Request & Phương thức
 
-Đối tượng `Illuminate\Http\Request` cung cập một số phương thức để kiểm tra HTTP request cho ứng dụng và kế thừa class `Symfony\Component\HttpFoundation\Request` . Chúng ta sẽ thảo luận một số phương thức quan trọng dưới đây.
+Đối tượng ``Illuminate\Http\Request`` cung cập một số phương thức để kiểm tra HTTP request cho ứng dụng và kế thừa class ``Symfony\Component\HttpFoundation\Request`` . Chúng ta sẽ thảo luận một số phương thức quan trọng dưới đây.
 
 #### Nhận đường dẫn Request
 
-Phương thức path trả về thông tin đường dẫn của request. Vì vậy, Nếu request gửi đến là `http://domain.com/foo/bar`, phương thức path sẽ trả về `foo/bar`:
+Phương thức path trả về thông tin đường dẫn của request. Vì vậy, Nếu request gửi đến là  `http://domain.com/foo/bar`, phương thức path sẽ trả về `foo/bar`:
 
 ```PHP
 $uri = $request->path();
 ```
 
-Phương thức `is` sẽ cho phép bạn xác nhận những request gửi đến có đường dẫn khớp với pattern hay không. Bạn có thể sử dụng ký tự `*` khi sử dụng phương thức này:
+Phương thức ``is`` sẽ cho phép bạn xác nhận những request gửi đến có đường dẫn khớp với pattern hay không. Bạn có thể sử dụng ký tự ``*`` khi sử dụng phương thức này:
 
 ```PHP
 if ($request->is('admin/*')) {
@@ -122,7 +122,7 @@ if ($request->is('admin/*')) {
 
 #### Nhận Request URL
 
-Để nhận đường dẫn đầy đủ URL từ request gửi đến bạn có thể sử dụng phương thức `url` or `fullUrl`. Phương thức `url` sẽ trả về URL không có string query, trong khi phương thức `fullUrl` bao gồm cả string query:
+Để nhận đường dẫn đầy đủ URL từ request gửi đến bạn có thể sử dụng phương thức ``url`` or  ``fullUrl``. Phương thức ``url`` sẽ trả về URL không có string query, trong khi phương thức ``fullUrl`` bao gồm cả string query:
 
 ```PHP
 // Without Query String...
@@ -134,7 +134,7 @@ $url = $request->fullUrl();
 
 #### Nhận phương thức Request
 
-Phương thức `method` sẽ trả về phương thức HTTP tương ứng với request. Bạn có thể sử dụng phương thức `isMethod` để xác thực phương thức HTTP khớp với string:
+Phương thức ``method`` sẽ trả về phương thức HTTP tương ứng với request. Bạn có thể sử dụng phương thức ``isMethod`` để xác thực phương thức HTTP khớp với string:
 
 ```PHP
 $method = $request->method();
@@ -164,19 +164,19 @@ Route::get('/', function (ServerRequestInterface $request) {
 });
 ```
 
-> Nếu bạn trả lại một response PSR-7 từ một route hoặc controller, nó sẽ tự động convert lại thành một response của Laravel và hiển thị.
+>Nếu bạn trả lại một response PSR-7 từ một route hoặc controller, nó sẽ tự động convert lại thành một response của Laravel và hiển thị.
 
 ## Input Trimming & Normalization
 
-Theo mặc định, laravel bao gồm `TrimStrings` và `ConvertEmptyStringsToNull` ở trong ngăn xếp trung gian toàn cục của ứng dụng của bạn. Những phần mềm trung gian này được liệt kê trong ngăn xếp của lớp `App\Http\Kernel`. Các phần mềm trung gian này sẽ tự động cắt tất cả các trường chuỗi đến theo yêu cầu, cũng như chuyển đổi bất kỳ trường chuỗi rỗng nào thành `null` . Điều này cho phép bạn không phải lo lắng về những mối quan tâm bình thường hóa trong các tuyến đường và bộ điều khiển của bạn.
+Theo mặc định, laravel bao gồm ``TrimStrings`` và ``ConvertEmptyStringsToNull`` ở trong ngăn xếp trung gian toàn cục của ứng dụng của bạn. Những phần mềm trung gian này được liệt kê trong ngăn xếp của lớp ``App\Http\Kernel``. Các phần mềm trung gian này sẽ tự động cắt tất cả các trường chuỗi đến theo yêu cầu, cũng như chuyển đổi bất kỳ trường chuỗi rỗng nào thành ``null`` . Điều này cho phép bạn không phải lo lắng về những mối quan tâm bình thường hóa trong các tuyến đường và bộ điều khiển của bạn.
 
-Nếu bạn muốn vô hiệu hóa hành vi này, bạn có thể xóa hai phần mềm trung gian khỏi ngăn xếp phần mềm trung gian của ứng dụng bằng cách xóa chúng khỏi thuộc tính `$middleware`của lớp `App\Http\Kernel` của bạn .
+Nếu bạn muốn vô hiệu hóa hành vi này, bạn có thể xóa hai phần mềm trung gian khỏi ngăn xếp phần mềm trung gian của ứng dụng bằng cách xóa chúng khỏi thuộc tính ``$middleware``của lớp ``App\Http\Kernel`` của bạn .
 
 ## Nhận input
 
 ### Nhận toàn bộ giá trị input
 
-Bạn có thể lấy toàn bộ giá trị input dưới dạng mảng bằng cách sử dụng phương thức `all`:
+Bạn có thể lấy toàn bộ giá trị input dưới dạng mảng bằng cách sử dụng phương thức ``all``:
 
 ```PHP
 $input=$request->all()
@@ -206,7 +206,7 @@ $names = $request->input('products.*.name');
 
 ### Nhận dữ liệu từ câu truy vấn
 
-Khi phương thức `input` lấy các giá trị từ toàn bộ câu lệnh yêu cầu(bao gồm cả chuỗi truy vấn), thì phương thức `query` chỉ nhận giá trị từ câu truy vấn
+Khi phương thức ``input`` lấy các giá trị từ toàn bộ câu lệnh yêu cầu(bao gồm cả chuỗi truy vấn), thì phương thức ``query`` chỉ nhận giá trị từ câu truy vấn
 
 ```PHP
 $name=$request->query('name')
@@ -218,7 +218,7 @@ Nếu như câu truy vấn yêu cầu không có giá trị thì đối số th�
 $name = $request->query('name', 'Helen');
 ```
 
-Bạn cũng có thể gọi phương thức `query` mà không có đối số nào để lấy toàn bộ giá trị của câu truy vấn dưới dạng mảng:
+Bạn cũng có thể gọi phương thức ``query`` mà không có đối số nào để lấy toàn bộ giá trị của câu truy vấn dưới dạng mảng:
 
 ```PHP
 $query = $request->query();
@@ -266,7 +266,7 @@ if ($request->has('name')) {
 }
 ```
 
-Khi đưa vào một mảng, phương thức `has` sẽ xác định trong tất cả dữ liệu có trong biến:
+Khi đưa vào một mảng, phương thức ``has`` sẽ xác định trong tất cả dữ liệu có trong biến:
 
 ```PHP
 if ($request->has(['name', 'email'])) {
@@ -274,7 +274,7 @@ if ($request->has(['name', 'email'])) {
 }
 ```
 
-Nếu bạn muốn kiểm tra xem giá trị có rỗng không, có thể sử dụng phương thức `filled`:
+Nếu bạn muốn kiểm tra xem giá trị có rỗng không, có thể sử dụng phương thức ``filled``:
 
 ```PHP
 if ($request->filled('name')) {
@@ -356,7 +356,7 @@ $response->withCookie(cookie()->forever('name', 'value'));
 
 ### Tạo Cookie Instances
 
-Nếu bạn muốn tạo một `Symfony\Component\HttpFoundation\Cookie` có thể response sau một khoảng thời gian, bạn có thể sử dụng helper global `cookie`. Khi đó cookie sẽ không gửi lại cho client trừ khi nó được gán vào response instance:
+Nếu bạn muốn tạo một ``Symfony\Component\HttpFoundation\Cookie`` có thể response sau một khoảng thời gian, bạn có thể sử dụng helper global ``cookie``. Khi đó cookie sẽ không gửi lại cho client trừ khi nó được gán vào response instance:
 
 ```PHP
 $cookie = cookie('name', 'value', $minutes);
@@ -368,7 +368,7 @@ return response('Hello World')->cookie($cookie);
 
 ### Lấy file được upload
 
-Bạn có thể lấy files uploaded từ một `Illuminate\Http\Request` bằng cách sử dụng phương thức file hoặc sử dụng thuộc tính động. Phương thức `file` sẽ trả về một class `Illuminate\Http\UploadedFile`, nó kế thừa từ `SplFileInfo` class của PHP và cung cấp một số phương thức để tương tác với fiel:
+Bạn có thể lấy files uploaded từ một ``Illuminate\Http\Request`` bằng cách sử dụng phương thức  file hoặc sử dụng thuộc tính động. Phương thức ``file`` sẽ trả về một class  ``Illuminate\Http\UploadedFile``, nó kế thừa từ ``SplFileInfo`` class của PHP và cung cấp một số phương thức để tương tác với fiel:
 
 ```PHP
 $file = $request->file('photo');
@@ -396,7 +396,7 @@ if ($request->file('photo')->isValid()) {
 
 ### Đường dẫn File & Extensions
 
-Class `UploadedFile` ngoài ra còn chứa phương thức lấy đường dẫn đầy đủ và extension của file. Phương thức extension sẽ cho phép đoán extension trên dựa nội dung của file. Extension này có thể khác với extension được cung cấp bởi client:
+Class ``UploadedFile`` ngoài ra còn chứa phương thức lấy đường dẫn đầy đủ và extension của file. Phương thức extension sẽ cho phép đoán extension trên dựa nội dung của file. Extension này có thể khác với extension được cung cấp bởi client:
 
 ```PHP
 $path = $request->photo->path();
@@ -406,15 +406,15 @@ $extension = $request->photo->extension();
 
 ### Phương thức khác của File
 
-Có một số phương thức tồn tại trong class `UploadedFile`. Chi tiết xem tại [tài liệu API](http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/File/UploadedFile.html) của class để biết thêm chi tiết các phương thức đấy.
+Có một số phương thức tồn tại trong class ``UploadedFile``. Chi tiết xem tại [tài liệu API](http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/File/UploadedFile.html) của class để biết thêm chi tiết các phương thức đấy.
 
 ### Chuyển vị trí file upload
 
-Để lưu một file uploaded, thông thường sử dụng một trong những cấu hình filesystems. Class `UploadedFile` có phương thức `store` nó sẽ chuyển file upload từ ổ cứng của bạn đến một nơi có thể là trên local của bạn hoặc ngay cả trên cloud storage như Amazon S3.
+Để lưu một file uploaded, thông thường sử dụng một trong những cấu hình filesystems. Class  ``UploadedFile`` có phương thức  ``store`` nó sẽ chuyển file upload từ ổ cứng của bạn đến một nơi có thể là trên local của bạn hoặc ngay cả trên cloud storage như Amazon S3.
 
-Phương thức `store` chấp nhận đường dẫn file nên được lưu trữ đường dẫn tương đối so với thư mục gốc cấu hình của filesystem. Đường dẫn không được chứa tên file, tên sẽ tự động được sinh ra bằng cách sử dụng mã hóa MD5 của nội dung file.
+Phương thức ``store`` chấp nhận đường dẫn file nên được lưu trữ đường dẫn tương đối so với thư mục gốc cấu hình của filesystem. Đường dẫn không được chứa tên file, tên sẽ tự động được sinh ra bằng cách sử dụng mã hóa MD5 của nội dung file.
 
-Phương thức `store` ngoài ra còn chấp nhận tham số thứ hai có tên của nơi mà bạn sử dụng để lưu file. Phương thức sẽ trả về đường dẫn tương đối của file đối với thư mục gốc:
+Phương thức ``store`` ngoài ra còn chấp nhận tham số thứ hai có tên của nơi mà bạn sử dụng để lưu file. Phương thức sẽ trả về đường dẫn tương đối của file đối với thư mục gốc:
 
 ```PHP
 $request->file('photo')->move($destinationPath);
@@ -438,7 +438,7 @@ Có nhiều hàm khác hỗ trợ cho việc xử lý file trong `UploadedFile`.
 
 When running your applications behind a load balancer that terminates TLS / SSL certificates, you may notice your application sometimes does not generate HTTPS links. Typically this is because your application is being forwarded traffic from your load balancer on port 80 and does not know it should generate secure links.
 
-To solve this, you may use the `App\Http\Middleware\TrustProxies` middleware that is included in your Laravel application, which allows you to quickly customize the load balancers or proxies that should be trusted by your application. Your trusted proxies should be listed as an array on the $proxies property of this middleware. In addition to configuring the trusted proxies, you may configure the proxy $headers that should be trusted:
+To solve this, you may use the ``App\Http\Middleware\TrustProxies`` middleware that is included in your Laravel application, which allows you to quickly customize the load balancers or proxies that should be trusted by your application. Your trusted proxies should be listed as an array on the $proxies property of this middleware. In addition to configuring the trusted proxies, you may configure the proxy $headers that should be trusted:
 
 ```PHP
 <?php
@@ -469,11 +469,11 @@ class TrustProxies extends Middleware
 }
 ```
 
-If you are using AWS Elastic Load Balancing, your $headers value should be Request::HEADER_X_FORWARDED_AWS_ELB. For more information on the constants that may be used in the $headers property, check out Symfony's documentation on trusting proxies.
+If you are using AWS Elastic Load Balancing, your $headers value should be  Request::HEADER_X_FORWARDED_AWS_ELB. For more information on the constants that may be used in the $headers property, check out Symfony's documentation on trusting proxies.
 
 ### Trusting All Proxies
 
-If you are using Amazon AWS or another "cloud" load balancer provider, you may not know the IP addresses of your actual balancers. In this case, you may use \* to trust all proxies:
+If you are using Amazon AWS or another "cloud" load balancer provider, you may not know the IP addresses of your actual balancers. In this case, you may use * to trust all proxies:
 
 ```PHP
 /**

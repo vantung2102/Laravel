@@ -61,11 +61,11 @@ Route::get('user/{id}', 'UserController@showProfile');
 
 Bây giờ, khi mà một request khớp với URI của định tuyến đã được xác định, thì method `showProfile` của lớp `UserController` sẽ được thực thi. Tất nhiên, tham số của định tuyến cũng sẽ được truyền đến method.
 
-> Controllers không yêu cầu kế thừa từ base class. Tuy nhiên, bạn sẽ không có quyền truy cập vào các tính năng tiện lợi như phương thức middleware, validate, và dispatch.
+>Controllers không yêu cầu kế thừa từ base class. Tuy nhiên, bạn sẽ không có quyền truy cập vào các tính năng tiện lợi như phương thức middleware, validate, và dispatch.
 
 ### Controllers & Namespaces
 
-Có điều rất quan trọng cần lưu ý rằng chúng ta không cần phải ghi rõ không gian tên đầy đủ của controller khi định nghĩa định tuyến cho controller. Kể từ khi `RouteServiceProvider` tải file route bên trong nhóm route có chứa namespace, chúng ta chỉ cần chỉ định tên class sau `App\Http\Controllers` namespace.
+Có điều rất quan trọng cần lưu ý rằng chúng ta không cần phải ghi rõ không gian tên đầy đủ của controller khi định nghĩa định tuyến cho controller. Kể từ khi ``RouteServiceProvider`` tải file route bên trong nhóm route có chứa namespace, chúng ta chỉ cần chỉ định tên class sau  ``App\Http\Controllers`` namespace.
 
 Nếu bạn muốn gộp hoặc sắp xếp các controller của bạn sử dụng không gian tên của PHP sâu hơn trong thư mục `App\Http\Controllers`, thì đơn giản chỉ cần định nghĩa tên lớp tương đối so với không gian tên gốc `App\Http\Controllers`. Do dó, nếu tên lớp controller đầy đủ của bạn là `App\Http\Controllers\Photos\AdminController`, thì bạn chỉ đăng ký route như sau:
 
@@ -75,7 +75,7 @@ Route::get('foo', 'Photos\AdminController@method');
 
 ### Single Action Controllers
 
-Nếu bạn muốn định nghĩa một controller xử lý duy nhất một action, bạn có thể dùng phương thức `__invoke` trong controller:
+Nếu bạn muốn định nghĩa một controller xử lý duy nhất một action, bạn có thể dùng phương thức  ``__invoke`` trong controller:
 
 ```PHP
 <?php
@@ -159,7 +159,7 @@ $this->middleware(function ($request, $next) {
 });
 ```
 
-> Bạn có thể gán middleware cho một tập con các action của controller; tuy nhiên, tập con action có thể to ra khi controller của bạn nhiều action. Vì thế, nên cân nhắc việc chia thành nhiều controller nhỏ hơn.
+>Bạn có thể gán middleware cho một tập con các action của controller; tuy nhiên, tập con action có thể to ra khi controller của bạn nhiều action. Vì thế, nên cân nhắc việc chia thành nhiều controller nhỏ hơn.
 
 ## Resource Controllers
 
@@ -179,7 +179,7 @@ Route::resource('photo', 'PhotoController');
 
 Khai báo định tuyến duy nhất này tạo ra nhiều định tuyến để xử lý đa dạng các loại hành động cho tài nguyên "photo". Tương tự như vậy, controller được tạo ra sẽ có sẵn vài method gốc rễ cho từng hành động, bao gồm cả ghi chú thông báo cho bạn những URI và những HTTP method (POST, GET, PUT, PATCH, DELETE) nào chúng xử lý.
 
-Bạn có thể xử lý nhiều resource controllers một lần bằng cách sử dụng mảng trong phương thức `resources`
+Bạn có thể xử lý nhiều resource controllers một lần bằng cách sử dụng mảng trong phương thức ``resources``
 
 ```PHP
 Route::resources([
@@ -190,19 +190,19 @@ Route::resources([
 
 ### Những hành động được xử lý bởi Resource Controller
 
-| Verb      | Path                  | Action  | Route Name    |
-| --------- | --------------------- | ------- | ------------- |
-| GET       | `/photo`              | index   | photo.index   |
-| GET       | `/photo/create`       | create  | photo.create  |
-| POST      | `/photo`              | store   | photo.store   |
-| GET       | `/photo/{photo}`      | show    | photo.show    |
-| GET       | `/photo/{photo}/edit` | edit    | photo.edit    |
-| PUT/PATCH | `/photo/{photo}`      | update  | photo.update  |
-| DELETE    | `/photo/{photo}`      | destroy | photo.destroy |
+Verb      | Path                  | Action       | Route Name
+----------|-----------------------|--------------|---------------------
+GET       | `/photo`              | index        | photo.index
+GET       | `/photo/create`       | create       | photo.create
+POST      | `/photo`              | store        | photo.store
+GET       | `/photo/{photo}`      | show         | photo.show
+GET       | `/photo/{photo}/edit` | edit         | photo.edit
+PUT/PATCH | `/photo/{photo}`      | update       | photo.update
+DELETE    | `/photo/{photo}`      | destroy      | photo.destroy
 
 #### Specifying The Resource Model
 
-Nếu bạn đang sử dụng route model binding và muốn phương thức của resource controller được tạo ra theo gợi ý có sẵn, bạn có thể dùng tùy chọn `--model` khi tạo controller
+Nếu bạn đang sử dụng route model binding và muốn phương thức của resource controller được tạo ra theo gợi ý có sẵn, bạn có thể dùng tùy chọn ``--model`` khi tạo controller
 
 ```Shell
 php artisan make:controller PhotoController --resource --model=Photo
@@ -232,13 +232,13 @@ Route::resource('photo', 'PhotoController', ['except' => [
 
 #### API Resource Routes
 
-Khi tuyên bố các tuyến đường tài nguyên sẽ được tiêu thụ bởi các API, bạn thường sẽ muốn loại trừ các tuyến đường dẫn các mẫu HTML như create và edit. Để thuận tiện, bạn có thể sử dụng phương thức `apiResourcephương` để tự động loại trừ hai tuyến đường:
+Khi tuyên bố các tuyến đường tài nguyên sẽ được tiêu thụ bởi các API, bạn thường sẽ muốn loại trừ các tuyến đường dẫn các mẫu HTML như create và edit. Để thuận tiện, bạn có thể sử dụng phương thức ``apiResourcephương`` để tự động loại trừ hai tuyến đường:
 
 ```PHP
 Route::apiResource('photos', 'PhotoController');
 ```
 
-Bạn có thể đăng ký nhiều trình điều khiển tài nguyên API cùng một lúc bằng cách truyền một mảng vào phương thức`apiResourcesphương`:
+Bạn có thể đăng ký nhiều trình điều khiển tài nguyên API cùng một lúc bằng cách truyền một mảng vào phương thức``apiResourcesphương``:
 
 ```PHP
 Route::apiResources([
@@ -247,7 +247,7 @@ Route::apiResources([
 ]);
 ```
 
-Để nhanh chóng tạo ra một bộ điều khiển tài nguyên API không bao gồm các phương thức createhoặc edit, sử dụng --apichuyển đổi khi thực hiện lệnh:`make:controller`
+Để nhanh chóng tạo ra một bộ điều khiển tài nguyên API không bao gồm các phương thức  createhoặc edit, sử dụng --apichuyển đổi khi thực hiện lệnh:``make:controller``
 
 ```Shell
 php artisan make:controller API/PhotoController --api
@@ -273,7 +273,7 @@ Route::resource('user', 'AdminUserController', ['parameters' => [
     ]]);
 ```
 
-Ví dụ trên sẽ tạo ra những URI sau cho định tuyến `show` của tài nguyên:
+ Ví dụ trên sẽ tạo ra những URI sau cho định tuyến `show` của tài nguyên:
 
 ```PHP
 /user/{admin_user}
@@ -281,7 +281,7 @@ Ví dụ trên sẽ tạo ra những URI sau cho định tuyến `show` của t�
 
 ### Localizing Resource URIs
 
-Theo mặc định, `Route::resource` sẽ tạo ra URI tài nguyên bằng cách sử dụng các động từ tiếng Anh. Nếu bạn muốn đặt theo cách từ ở địa phương bạn, bạn có thể sử dụng phương thức `Route::resourceVerbs`. Điều này có thể làm trong phương thức `boot` hoặc `AppServiceProvider`
+Theo mặc định, ``Route::resource`` sẽ tạo ra  URI tài nguyên bằng cách sử dụng các động từ tiếng Anh. Nếu bạn muốn đặt theo cách từ ở địa phương bạn, bạn có thể sử dụng phương thức ``Route::resourceVerbs``. Điều này có thể làm trong phương thức ``boot`` hoặc ``AppServiceProvider``
 
 ```php
 use Illuminate\Support\Facades\Route;
@@ -300,7 +300,7 @@ public function boot()
 }
 ```
 
-Khi các động từ đã được chỉnh lại, các route resoure đã được tạo ra như `Route::resource('fotos', 'PhotoController')` sẽ tạo ra các URL sau:
+Khi các động từ đã được chỉnh lại, các route resoure đã được tạo ra như ``Route::resource('fotos', 'PhotoController')`` sẽ tạo ra các URL sau:
 
 ```php
 /fotos/crear
@@ -318,7 +318,7 @@ Route::get('photos/popular', 'PhotoController@method');
 Route::resource('photos', 'PhotoController');
 ```
 
-> Bạn nên tập trung vào controllers. Nếu bạn thấy mình thường xuyên thêm các route bên ngoài của các resource route thì hãy cân nhắc chia nhỏ controller hơn.
+>Bạn nên tập trung vào controllers. Nếu bạn thấy mình thường xuyên thêm các route bên ngoài của các resource route thì hãy cân nhắc chia nhỏ controller hơn.
 
 ## Dependency Injection & Controllers
 
@@ -424,7 +424,7 @@ Nếu như ứng dụng của bạn chỉ sử dụng các định tuyến dạn
 php artisan route:cache
 ```
 
-Sau khi chạy lệnh, file cached routes của bạn sẽ được tải với mọi request. Nhớ rằng, nếu bạn thêm một route mới bạn cần phải làm mới lại route cache. Vì ký do này bạn chỉ lên chạy một lần khi `route:cache` ứng dụng của bạn deploy.
+Sau khi chạy lệnh, file cached routes của bạn sẽ được tải với mọi request. Nhớ rằng, nếu bạn thêm một route mới bạn cần phải làm mới lại route cache. Vì ký do này bạn chỉ lên chạy một lần khi  ``route:cache`` ứng dụng của bạn deploy.
 
 Để xoá file bộ nhớ đệm định tuyến mà không tạo file mới, sử dụng câu lện `route:clear`:
 

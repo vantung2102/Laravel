@@ -2,17 +2,16 @@
 
 - [Giới thiệu](#introduction)
 - [Viết câu lệnh](#writing-commands)
-  - [Cấu trúc câu lệnh](#command-structure)
+    - [Cấu trúc câu lệnh](#command-structure)
 - [Command I/O](#command-io)
-  - [Khai báo yêu cầu dữ liệu đầu vào](#defining-input-expectations)
-  - [Nhận dữ liệu đầu vào](#retrieving-input)
-  - [Hỏi yêu cầu nhập dữ liệu](#prompting-for-input)
-  - [Hiển thị nội dung](#writing-output)
+    - [Khai báo yêu cầu dữ liệu đầu vào](#defining-input-expectations)
+    - [Nhận dữ liệu đầu vào](#retrieving-input)
+    - [Hỏi yêu cầu nhập dữ liệu](#prompting-for-input)
+    - [Hiển thị nội dung](#writing-output)
 - [Đăng kí câu lệnh](#registering-commands)
 - [Gọi câu lệnh trên mã nguồn](#calling-commands-via-code)
 
 <a name="introduction"></a>
-
 ## Giới thiệu
 
 Artisan là tên của giao diện màn hình gõ lệnh đính kèm trong Laravel. Nó cung cấp một danh sách các câu lệnh hữu ích để sử dụng trong quá trình phát triển sản phẩm. Artisan được phát triển dựa trên component Symfony Console khá mạnh mẽ. Để xem danh sách các câu lệnh được cung cấp, bạn có thể sử dụng câu lệnh `list`:
@@ -24,7 +23,6 @@ Mỗi câu lệnh đều có kèm theo một màn hình "help" để hiển th�
     php artisan help migrate
 
 <a name="writing-commands"></a>
-
 ## Viết câu lệnh
 
 Ngoài việc sử dụng các câu lệnh được cung cấp sẵn, ban cũng có thể tạo câu lệnh riêng để sử dụng cho ứng dụng của bạn. Bạn có thể lưu trữ các câu lệnh riêng đó trong thư mục `app/Console/Commands`; tuy nhiên, bạn hoàn toàn thoải mái trong việc chọn vị trí lưu đặt mã nguồn các câu lệnh với điều kiện là phải khai báo tự động khởi tạo trong cấu hình của `composer.json`.
@@ -38,7 +36,6 @@ Câu lệnh trên sẽ tạo một class tại `app/Console/Commands/SendEmails.
     php artisan make:console SendEmails --command=emails:send
 
 <a name="command-structure"></a>
-
 ### Cấu trúc câu lệnh
 
 Khi mà câu lệnh được tạo ra, bạn nên điền vào thông tin của hai thuộc tính `signature` và `description` trong class, vì chúng sẽ được dùng để hiển thị khi mà câu lệnh `list` được thực thi.
@@ -103,11 +100,9 @@ Chú ý là chúng ta có thể inject bất cứ dependencies nào mà chúng t
     }
 
 <a name="command-io"></a>
-
 ## Command I/O
 
 <a name="defining-input-expectations"></a>
-
 ### Khai báo yêu cầu dữ liệu đầu vào
 
 Thông thường chúng ta sẽ nhận dữ liệu đầu vào từ người sử dụng thông qua các đối số và tuỳ chọn khi thực hiện viết các câu lệnh console. Laravel làm cho việc này trở nên tiện hơn khi khai báo yêu cầu dữ liệu đầu vào sử dụng thuộc tính `signature` trong câu lệnh. Thuộc tính `signature` cho phép bạn khai báo tên, đối số, và các tuỳ chọn cho câu lệnh dưới dạng một giá trị, một biểu thức hay cú pháp tương tự khai báo route.
@@ -183,7 +178,6 @@ Bạn có thể gán nội dung mô tả cho các đối số và tuỳ chọn b
                             {--queue= : Whether the job should be queued}';
 
 <a name="retrieving-input"></a>
-
 ### Nhận dữ liệu đầu vào
 
 Khi câu lệnh được thực thi, rõ ràng là chúng ta cần lấy được giá trị của các đối số và tuỳ chọn được nhận vào câu lệnh. Để làm được điều này, bạn cần sử dụng tới phương thức `argument` và `option`:
@@ -215,7 +209,6 @@ Tuỳ chọn có thể nhận thông qua phương thức `option`. Bạn sử d�
 Nếu như đối số hay tuỳ chọn không tồn tại, giá trị nhận được sẽ là `null`.
 
 <a name="prompting-for-input"></a>
-
 ### Hỏi yêu cầu nhập dữ liệu
 
 Ngoài việc hiển thị, bạn cũng có thể yêu cầu người dùng nhập dữ liệu trong quá trình thực thi câu lệnh. Phương thức `ask` sẽ yêu cầu người dùng nhập dữ liệu với câu hỏi được đưa ra, nhận dữ liệu và truyền dữ liệu nhập từ người dùng vào trong câu lệnh:
@@ -253,7 +246,6 @@ Nếu như bạn cần đưa ra một danh sách các sự lựa chọn, bạn c
     $name = $this->choice('What is your name?', ['Taylor', 'Dayle'], $default);
 
 <a name="writing-output"></a>
-
 ### Hiển thị nội dung
 
 Để hiển thị nội dung ra màn hình, sử dụng các phương thức sau `line`, `info`, `comment`, `question` và `error`. Mỗi phương thức sẽ sử dụng màu ANSI tương ứng với mục đích của nó.
@@ -307,7 +299,6 @@ Với các tác vụ chạy lâu, thì việc sử dụng một thanh tiến tr�
 Tham khảo [tài liệu về Symfony Progress Bar](http://symfony.com/doc/2.7/components/console/helpers/progressbar.html) để cập nhật thêm các tuỳ chọn khác.
 
 <a name="registering-commands"></a>
-
 ## Đăng kí câu lệnh
 
 Khi mà câu lệnh hoàn thành, bạn cần phải đăng kí với Artisan để câu lệnh có thể sử dụng được. Việc này sẽ thông qua file `app/Console/Kernel.php`.
@@ -319,7 +310,6 @@ Trong file này, bạn có thể thấy một danh sách câu lệnh trong thu�
     ];
 
 <a name="calling-commands-via-code"></a>
-
 ## Gọi câu lệnh trên mã nguồn
 
 Đôi lúc bạn muốn thực thi một câu lệnh Artisan nằm ngoài CLI. Ví dụ, bạn muốn gọi một câu lệnh Artisan từ một route hay controller. Bạn có thể sử dụng `call` trong `Artisan` facade để thực hiện việc này. Phương thức `call` nhận tên của câu lệnh vào trong đối số đầu tiên, và một mảng danh sách các tham số thực thi câu lệnh ở đối số thứ hai. Mã kết quả thực thi sẽ được trả lại:

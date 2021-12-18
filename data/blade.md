@@ -12,7 +12,7 @@
     - [Hiện thị Json](#hi%E1%BB%87n-th%E1%BB%8B-json)
     - [HTML Entity Encoding](#html-entity-encoding)
   - [Blade & JavaScript Frameworks](#blade-javascript-frameworks)
-    - [Chỉ thị `@verbatim`](#ch%E1%BB%89-th%E1%BB%8B-verbatim)
+    - [Chỉ thị ``@verbatim``](#ch%E1%BB%89-th%E1%BB%8B-verbatim)
   - [Cấu trúc điều khiển](#c%E1%BA%A5u-tr%C3%BAc-%C4%91i%E1%BB%81u-khi%E1%BB%83n)
     - [Cấu trúc điều kiện](#c%E1%BA%A5u-tr%C3%BAc-%C4%91i%E1%BB%81u-ki%E1%BB%87n)
       - [Section Directives](#section-directives)
@@ -88,7 +88,7 @@ Khi tạo một trang con, bạn có thể sử dụng `@extends` để cho bi�
 
 Ở ví dụ này, phần `sidebar` có sử dụng `@parent` để thực hiện thêm nội dung vào trong sidebar (thay vì ghi đè toàn bộ). `@parent` sẽ được thay thế bởi nội dung của layout khi view được render.
 
-> Khác với ví dụ trước, phần `sidebar` kết thúc với `@endsection` thay vì `@show`. `@endsection` chỉ định nghĩa phần được chọn trong khi `@show` sẽ định nghĩa và hiện thị ngay phần đó
+>Khác với ví dụ trước, phần ``sidebar`` kết thúc với ``@endsection`` thay vì ``@show``. ``@endsection`` chỉ định nghĩa phần được chọn trong khi ``@show`` sẽ định nghĩa và hiện thị ngay phần đó
 
 Dĩ nhiên, tương tự như view PHP thuần, Blade view có thể được trả về từ route sử dụng `view`:
 
@@ -158,7 +158,7 @@ Trong ví dụ trên, nếu biến $name tồn tại, giá trị sẽ được h
 </script>
 ```
 
-Tuy nhiên thay vì gọi `json_encode`, bạn có thể sử dụng `@json` thay thế
+Tuy nhiên thay vì gọi ``json_encode``, bạn có thể sử dụng ``@json`` thay thế
 
 ```PHP
 <script>
@@ -168,7 +168,7 @@ Tuy nhiên thay vì gọi `json_encode`, bạn có thể sử dụng `@json` tha
 
 ### HTML Entity Encoding
 
-Theo mặc định, Blade (và Laravel `e` helper) sẽ mã hóa các thực thể html. Nếu bạn muốn bỏ, gọi phương thức `Bale:Blade::withoutDoubleEncoding` ở trong phương thức `boot` của `AppServiceProvider`:
+Theo mặc định, Blade (và Laravel ``e`` helper) sẽ mã hóa các thực thể html. Nếu bạn muốn bỏ, gọi phương thức ``Bale:Blade::withoutDoubleEncoding`` ở trong phương thức ``boot`` của ``AppServiceProvider``:
 
 ```PHP
 <?php
@@ -204,9 +204,9 @@ Hello, @{{ name }}.
 
 Ở ví dụ này, kí hiệu `@` sẽ bị Blade xoá đi; vì thế `{{ name }}` sẽ được giữ lại và cho phép nó được render tiếp bởi Javascript khác của bạn.
 
-### Chỉ thị `@verbatim`
+### Chỉ thị ``@verbatim``
 
-Nếu bạn muốn hiển thị biến JavaScript trong phần lớn template của bạn, bạn có thể bọc chúng trong `@verbatim` khi đó bạn sẽ không cần tiền tố `@` trước biểu thức điều kiện:
+Nếu bạn muốn hiển thị biến JavaScript trong phần lớn template của bạn, bạn có thể bọc chúng trong  ``@verbatim`` khi đó bạn sẽ không cần tiền tố ``@`` trước biểu thức điều kiện:
 
 ```PHP
 @verbatim
@@ -242,7 +242,7 @@ Bạn có thể sử dụng `if` với các directive `@if`, `@elseif`, `@else`,
 @endunless
 ```
 
-Ngoài các điều kiện đã nói trên, còn có `@isset` và `@empty` có thể sử đụng:
+Ngoài các điều kiện đã nói trên, còn có ``@isset`` và ``@empty`` có thể sử đụng:
 
 ```PHP
 @isset($records)
@@ -270,7 +270,7 @@ Bạn cũng có thể kiểm tra nếu một phần layout có chứa nội dung
 
 #### Chỉ thị xác thực
 
-Chỉ thị `@auth` và `@guest` có thể dùng để kiểm tra người dùng hiện giờ là khách hay là đã đăng ký
+Chỉ thị ``@auth`` và ``@guest`` có thể dùng để kiểm tra người dùng hiện giờ là khách hay là đã đăng ký
 
 ```PHP
 @auth
@@ -282,7 +282,7 @@ Chỉ thị `@auth` và `@guest` có thể dùng để kiểm tra người dùng
 @endguest
 ```
 
-Nếu cần, bạn có thể chỉ định[bảo vệ xác thực](authentication.md) cần được kiểm tra khi sử dụng @auth và @guest:
+Nếu cần, bạn có thể chỉ định[bảo vệ xác thực](authentication.md) cần được kiểm tra khi sử dụng @auth và  @guest:
 
 ```PHP
 @auth('admin')
@@ -367,7 +367,7 @@ Bạn cũng có thể thêm điều kiện vào khai trên cùng một dòng:
 
 ### Biến vòng lặp
 
-Trong vòng lặp, một biến `$loop` sẽ tồn tại bên trong vòng lặp. Biến này cho phép ta truy cập một số thông tin hữu ích của vòng lặp như index của vòng lặp hiện tại và vòng lặp đầu hoặc vòng lặp cuối của nó:
+Trong vòng lặp, một biến ``$loop`` sẽ tồn tại bên trong vòng lặp. Biến này cho phép ta truy cập một số thông tin hữu ích của vòng lặp như index của vòng lặp hiện tại và vòng lặp đầu hoặc vòng lặp cuối của nó:
 
 ```php
 @foreach ($users as $user)
@@ -383,7 +383,7 @@ Trong vòng lặp, một biến `$loop` sẽ tồn tại bên trong vòng lặp.
 @endforeach
 ```
 
-Nếu bạn có vòng lặp lồng nhau, bạn có thể truy cập biên `$loop` của vòng lặp tra qua thuộc tính `parent`:
+Nếu bạn có vòng lặp lồng nhau, bạn có thể truy cập biên ``$loop`` của vòng lặp tra qua thuộc tính ``parent``:
 
 ```php
 @foreach ($users as $user)
@@ -418,7 +418,7 @@ Blade cũng cho phép bạn viết comments trong view. Tuy nhiên, không giố
 
 ### PHP
 
-Trong một số trường hợp, chèn PHP code vào view sẽ có ích hơn, Bạn có thể sử dụng chỉ thị của blade `@php` để thực hiện một khối lệnh php đơn giản trong mẫu của bạn:
+Trong một số trường hợp, chèn PHP code vào view sẽ có ích hơn, Bạn có thể sử dụng chỉ thị của blade ``@php`` để thực hiện một khối lệnh php đơn giản trong mẫu của bạn:
 
 ```PHP
 @php
@@ -484,7 +484,7 @@ Bạn có thể đẩy vào stack tuỳ ý bao nhiêu lần bạn muốn. Để 
 </head>
 ```
 
-Nếu bạn muốn thềm vào phần đầu của stack, bạn có thể sự dụng chỉ thị `@prepend`
+Nếu bạn muốn thềm vào phần đầu của stack, bạn có thể sự dụng chỉ thị ``@prepend``
 
 ```PHP
 @push('scripts')
@@ -556,13 +556,13 @@ Như bạn thấy, hàm helper `with` được sử dụng trong directive này.
 <?php echo with($var)->format('m/d/Y H:i'); ?>
 ```
 
-> Sau khi cập nhật logic của một Blade directive, bạn cần xoá hết tất cả các Blade views đã bị cache bằng cách sử dụng câu lệnh Artisan `view:clear`.
+>Sau khi cập nhật logic của một Blade directive, bạn cần xoá hết tất cả các Blade views đã bị cache bằng cách sử dụng câu lệnh Artisan `view:clear`.
 
 ### Tùy chỉnh điều kiện if
 
 Lập trình tùy chỉnh chỉ thị đôi khi phức tạp hơn mức cần thiết khi xác định các câu lệnh điều kiện đơn giản, tùy chỉnh. Vì lý do đó, Blade cung cấp một phương pháp cho phép bạn nhanh chóng xác định các chỉ thị có điều kiện tùy chỉnh bằng cách sử dụng Closures.
 
-Ví dụ, định nghĩa điều kiện tùy chỉnh để kiểm tra môi trường ứng dụng hiện tại. Chúng tôi có thể làm điều này ở phương thức `boot` ở `AppServiceProvider`
+Ví dụ, định nghĩa điều kiện tùy chỉnh để kiểm tra môi trường ứng dụng hiện tại. Chúng tôi có thể làm điều này ở phương thức ``boot`` ở ``AppServiceProvider``
 
 ```php
 use Illuminate\Support\Facades\Blade;
